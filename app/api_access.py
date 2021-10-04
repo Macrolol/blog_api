@@ -1,5 +1,6 @@
 import requests
 
+# a few Error classes that may or may not all be used in the future
 class ApiAccessError:
     def __init__(self, requested_tag) -> None:
         self.requested_tag = requested_tag
@@ -16,7 +17,8 @@ class ApiAccessJSONError(ApiAccessError):
         self.json_error = json_error
 
 
-
+# simple wrapper around the requests.get() method that gets posts from the
+# hatchways api based on a single tag
 def get_posts(tag):
     r = requests.get('https://api.hatchways.io/assessment/blog/posts', params={'tag': tag}, timeout=5)
     if r.status_code != requests.codes.ok :
